@@ -1,4 +1,4 @@
-const answer = "APPLE";
+// const answer = "APPLE";
 
 let index = 0;
 let attempts = 0;
@@ -24,8 +24,13 @@ function appStart() {
     index = 0;
   };
 
-  const handleEnterKey = () => {
+  //서버에서 정답을 받아오는 코드
+  const handleEnterKey = async () => {
     let collect_count = 0;
+
+    const response = await fetch("/answer");
+    const answer = await response.json();
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-block[data-index='${attempts}${i}']`
